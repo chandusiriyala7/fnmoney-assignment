@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 import './index.css';
 
 class Assessment extends Component {
@@ -53,12 +54,18 @@ class Assessment extends Component {
     return Object.keys(errors).length === 0;
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     if (this.validateForm()) {
- 
-      console.log('Form submitted');
- 
+      const { email, mobileNumber, githubLink, websiteLink, experience } = this.state;
+      try {
+        const response = await axios.post('http://localhost:5000/api/assessments', { email, mobileNumber, githubLink, websiteLink, experience });
+        console.log('Assessment submitted', response.data);
+        // Show success message or redirect
+      } catch (err) {
+        console.error('Error submitting assessment:', err.response.data);
+        // Show error message
+      }
     }
   };
 

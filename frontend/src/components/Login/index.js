@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 import './index.css';
 
 class Login extends Component {
@@ -35,13 +35,19 @@ class Login extends Component {
     return Object.keys(errors).length === 0;
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     if (this.validateForm()) {
-      // Handle form submission logic here
-      console.log('Form submitted');
-      // Example: you can use the Cookies library to set cookies or perform API calls
-      Cookies.set('userToken', uuid(), { expires: 7 });
+      const { email, password } = this.state;
+      try {
+        const response = await axios.post('http://localhost:5000/api/login', { email, password });
+        Cookies.set('userToken', response.data.token, { expires: 7 });
+        console.log('User logged in');
+        // Redirect to a protected route or show success message
+      } catch (err) {
+        console.error('Error logging in:', err.response.data);
+        // Show error message
+      }
     }
   };
 

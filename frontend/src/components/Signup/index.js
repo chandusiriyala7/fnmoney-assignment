@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './index.css';
 
 class Signup extends Component {
@@ -39,12 +40,18 @@ class Signup extends Component {
     return Object.keys(errors).length === 0;
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     if (this.validateForm()) {
-      // Handle form submission logic here
-      console.log('Form submitted');
-      // Example: perform API call or navigate to another page
+      const { name, email, password } = this.state;
+      try {
+        const response = await axios.post('http://localhost:5000/api/register', { name, email, password });
+        console.log('User registered', response.data);
+ 
+      } catch (err) {
+        console.error('Error registering user:', err.response.data);
+ 
+      }
     }
   };
 

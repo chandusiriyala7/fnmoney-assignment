@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './index.css'
 const Header = () =>{
 
     return(
@@ -11,28 +11,17 @@ const Header = () =>{
  
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="/home"><img  src ="https://www.shutterstock.com/image-vector/initial-letter-fn-logo-design-260nw-2466369435.jpg" alt ="logo" className ="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="#features"></Nav.Link>
+            <Nav.Link href="#pricing"><h1><strong>FN Money</strong></h1></Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
+            <Nav.Link href="#deets"><button className='btn btn-danger'>Logout</button></Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+              <button className='btn btn-info'>Hire Me</button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

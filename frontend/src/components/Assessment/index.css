@@ -1,0 +1,11 @@
+.form-elements{
+    width:80vw;
+    padding:30px;
+    border-radius: 20px;
+}
+.assessment{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
